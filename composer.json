@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/estimateddeliverydate",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "Allow you customers to find around a more exact delivery date for their goods based on deliveries from your suppliers.",
+    "authors": [
+    {
+        "name": "Un.titled",
+        "email": "tech@un.titled.co.uk"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
