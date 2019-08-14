@@ -10,7 +10,6 @@ document.observe('dom:loaded',function() {
 	
 	$('qty').observe('keyup',function() {
 		if($('product-options-wrapper')) {
-			console.log('asd');
 			$$('.product-options dd.last').each(function(el) {
 				var finalAttribute = $(el).children[0].children[0];
 	
@@ -27,18 +26,21 @@ document.observe('dom:loaded',function() {
 
 function updateDeliveryDate(ele) {
 	var eleTrimmedId = $(ele).id.replace('attribute','');
-	var jsonConfig = spConfig.config.attributes[eleTrimmedId].options;
-	jsonConfig.each(function(obj) {
-		if(obj.id == ele.value) {
-			new Ajax.Request(host+'estimateddeliverydate/index/getdeliveries/pid/'+obj.allowedProducts[0]+'/qty/'+$('qty').value, {
-				onSuccess: function(response) {
-				 $('estimatedDeliveryText').update(response.responseText);
-				}
-			});	
-		} else {
-			$('estimatedDeliveryText').update('Please select options to check delivery');
-		}
-	});
+	
+	if(!isNaN(parseInt(eleTrimmedId))) { //Check for anything other attribute dropdowns causing errors
+		var jsonConfig = spConfig.config.attributes[eleTrimmedId].options;
+		jsonConfig.each(function(obj) {
+			if(obj.id == ele.value) {
+				new Ajax.Request(host+'estimateddeliverydate/index/getdeliveries/pid/'+obj.allowedProducts[0]+'/qty/'+$('qty').value, {
+					onSuccess: function(response) {
+					 $('estimatedDeliveryText').update(response.responseText);
+					}
+				});	
+			} else {
+				$('estimatedDeliveryText').update('Please select options to check delivery');
+			}
+		});
+	}
 }
 
 function updateDeliveryDate_Simple(pid) {
