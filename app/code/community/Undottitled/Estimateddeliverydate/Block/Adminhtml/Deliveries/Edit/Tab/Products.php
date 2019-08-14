@@ -190,7 +190,7 @@ class Undottitled_Estimateddeliverydate_Block_Adminhtml_Deliveries_Edit_Tab_Prod
         ));
 
         if (Mage::helper('catalog')->isModuleEnabled('Mage_CatalogInventory')) {
-            $this->addColumn('qty',
+            $this->addColumn('quantity',
                 array(
                     'header'=> Mage::helper('catalog')->__('Qty'),
                     'width' => '100px',
